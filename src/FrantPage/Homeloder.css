@@ -1,0 +1,31 @@
+
+.loader-wrapper {
+  height: 70vh;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(245, 245, 245, 0.5);
+}
+
+.custom-loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top-color: #18dccc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loader-text {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,23 @@
+
+.namedata:hover{
+    color: rgba(50, 149, 242, 0.806);
+}
+
+.primarycolor{
+    background:  #17a2b8;
+}
+
+
+/* @media screen and (max-width:992px) {
+    .mytitelh{
+     
+        font-size: 15px;
+    }  
+}
+
+@media screen and (max-width:768px) {
+    .mytitelh{
+     
+        font-size: 8px;
+    }  
+} */

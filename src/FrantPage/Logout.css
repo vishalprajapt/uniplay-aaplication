@@ -1,0 +1,60 @@
+.custom-logout-modal .modal-dialog {
+  width: 220px !important; /* forcefully apply width */
+  max-width: 220px !important; /* override Bootstrap */
+  margin: auto;
+}
+
+.logout-modal-body {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  height: 300px; /* desired height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logout-modal-body h4 {
+  font-weight: bold;
+  font-size: 20px;
+}
+.daa{
+  color: rgba(237, 237, 140, 0.945);
+}
+
+.logout-modal-body p {
+  color: #555;
+  font-size: 14px;
+}
+
+
+.logout-modal-body {
+  padding: 25px 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  height: 200px; /* Height ज़्यादा की */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logout-modal-body h4 {
+  font-weight: bold;
+}
+
+.logout-modal-body p {
+  color: #555;
+  font-size: 15px;
+}
+
+.closebuttondiv{
+  display: none;
+  justify-content: end;
+}
+
+@media screen and  (max-width:768px) {
+  .closebuttondiv{
+    display: flex;
+  }
+  
+}

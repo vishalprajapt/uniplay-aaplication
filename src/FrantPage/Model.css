@@ -1,0 +1,24 @@
+/* Custom animation for sliding in from the right and sliding out */
+.react-hot-toast {
+    animation: slideInOutRight 4s ease-out forwards;
+  }
+  
+  @keyframes slideInOutRight {
+    0% {
+      transform: translateX(100%); /* Start off-screen to the right */
+      opacity: 0; /* Start invisible */
+    }
+    10% {
+      transform: translateX(0); /* Slide to normal position */
+      opacity: 1; /* Make visible */
+    }
+    90% {
+      transform: translateX(0); /* Keep it in the normal position */
+      opacity: 1; /* Remain visible */
+    }
+    100% {
+      transform: translateX(100%); /* Slide back to the right off-screen */
+      opacity: 0; /* Fade out */
+    }
+  }
+  

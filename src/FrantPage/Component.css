@@ -1,0 +1,28 @@
+
+
+
+
+
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  
+  color:  #0a8d94 ;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.show-button {
+ 
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+.hide-button {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+

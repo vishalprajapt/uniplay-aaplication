@@ -1,0 +1,21 @@
+.hide-on-md {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hide-on-md {
+    display: none !important;
+  }
+}
+
+
+
+@media (min-width: 1300px) {
+  .signup-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(50%);
+    margin-top: 0 !important;
+  }
+}

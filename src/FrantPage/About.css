@@ -1,0 +1,44 @@
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f2f2;
+  }
+  
+  .about-text {
+    flex: 1 1 400px;
+    max-width: 600px;
+  }
+  
+  .about-text h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .about-text h3 {
+    margin-top: 20px;
+    color: #17a2b8;
+  }
+  
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  .about-image {
+    flex: 1 1 300px;
+    max-width: 500px;
+  }
+  
+  .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  }
+  
