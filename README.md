@@ -1,8 +1,34 @@
-# React + Vite
+# UniPlay 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**UniPlay** एक video streaming platform है जो React + Redux पर आधारित है। इसमें users categorized videos देख सकते हैं, खरीद सकते हैं और detail देख सकते हैं। साथ ही इसमें login/signup, location selection और payment जैसे features भी हैं।
 
-Currently, two official plugins are available:
+## 🚀 Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎥 Categorized Free & Paid Videos
+- 🔐 User Login/Signup (LocalStorage-based auth)
+- 🛒 Add to Cart + Address Management
+- 💳 Online Payment Integration (Razorpay, Cashfree)
+- 🌍 Location Search using OpenStreetMap (Nominatim + Leaflet.js)
+- 📱 Responsive UI with Swiper.js & Bootstrap
+- 🔄 Redux Toolkit for State Management
+- 🔍 Watch / Buy / View Details with proper access control
+
+## 🧠 Technologies Used:
+
+- React + Vite
+- Redux Toolkit
+- React Router DOM
+- Swiper.js
+- Bootstrap 5
+- Razorpay / Cashfree (for payments)
+- Leaflet.js + Nominatim API (for location)
+- LocalStorage (auth/session)
+- Git & GitHub
+
+## 🛠️ How to Run Locally:
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+npm install
+npm run dev
