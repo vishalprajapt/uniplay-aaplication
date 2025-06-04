@@ -7,6 +7,7 @@ import './Magazine.css'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { magazinedata ,datapdf} from '../Redux/Action';
 import { Addtocartdata } from '../Redux/Action';
+import LoginModal from './Loginmodel'
 
 
 function Magazinedata() {
@@ -14,17 +15,24 @@ function Magazinedata() {
   const purchasedMagazines=useSelector(state=>state.AddBuyall.magazinedataid)
   const navigate=useNavigate()
   const Dispatch=useDispatch()
+  const [showloginmodel, setshowloginmodel]=useState(false);
 
   console.log("Selctormagaid",purchasedMagazines);
-  
+  const localemail=localStorage.getItem("email")
+
+  // console.log("localemail",localemail)
 
   if (!ViewSelector || ViewSelector.length === 0) {
     return <div className="text-center py-5">No data found</div>;
   }
 
   const handlemagazine=(item)=>{
-   Dispatch(magazinedata(item))
+if(localemail){
+     Dispatch(magazinedata(item))
    navigate("/buymagazine")
+}else{
+  setshowloginmodel(true)
+}
 
   }
 
@@ -51,8 +59,14 @@ function Magazinedata() {
     }, 1500); 
   };
 
+  const modelhandel=()=>{
+    setshowloginmodel(false)
+  }
+
  
   return (
+    <>
+   {showloginmodel &&  <LoginModal  datafalse={modelhandel}/>}
     <div className="container py-2">
         <button onClick={()=>navigate(localdata)} style={{border:'none', outline:"none", background:"none",marginBottom:"10px"}} ><FaArrowLeftLong style={{fontSize:"20px"}} /></button>
       {ViewSelector.map((item, index) => (
@@ -121,7 +135,9 @@ function Magazinedata() {
     </div>
 
     <div>
-
+      {localemail &&
+      (
+        <>
       {item.status==="online" &&
          <button
       className="btn btn-info"
@@ -143,6 +159,7 @@ function Magazinedata() {
         'Added item'
       )}</span>}
     </button>
+}</>)
 }
     </div>
     </div>
@@ -156,6 +173,7 @@ function Magazinedata() {
         </div>
       ))}
     </div>
+    </>
   );
 }
 

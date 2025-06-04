@@ -73,8 +73,7 @@ useEffect(() => {
     }
   }, [lat, lon]);
 
-
-  
+     
 
   const handlebutton=async(item)=>{
     locationvalue(item)
