@@ -7,8 +7,10 @@ import { useDispatch } from 'react-redux';
 import Serachbar from './Serachbar';
 import { FaSearch } from "react-icons/fa";
 
-function Mazagine() {
-  const magazinebook = [
+
+   
+function Mazagine() { 
+  const magazinebook = [ 
     {
       id: 201,
       titele: 'Watch Time India - One Year Subscription (4 Print Issues) Magazines  (English)',
@@ -28,6 +30,7 @@ function Mazagine() {
       category:"Livingetc",
       
     },
+    
     {
       id: 203,
       titele: 'Drishti IAS Tarkash Annual Current Affairs English 2025 Released February 2025 Magazines  (English)',
@@ -250,7 +253,8 @@ function Mazagine() {
     <p style={{ marginTop: "10px" ,fontSize:"30px"}}>No results found</p>
   </div>
 )}
-        <div className="row">
+
+  <div className="row">
       {springs.map((springStyle, index) => {
         const item = filtercards[index];
         return (
@@ -261,7 +265,7 @@ function Mazagine() {
               className="rounded"
               style={{
                 ...springStyle,
-                padding: '10px 5px 5px 25px',
+                padding: '10px 5px 5px 30px',
                 background: '#fff',
                 width: '100%',
                 height: '360px',
