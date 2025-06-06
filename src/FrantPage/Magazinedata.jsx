@@ -7,7 +7,7 @@ import './Magazine.css'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { magazinedata ,datapdf} from '../Redux/Action';
 import { Addtocartdata } from '../Redux/Action';
-import LoginModal from './Loginmodel'
+import LoginModal from './Loginmodel';
 
 
 function Magazinedata() {
@@ -44,6 +44,7 @@ if(localemail){
     Dispatch(datapdf(item)) 
     navigate("/watch-datapdf")
   }
+  
 
   const [colordata, setcolordata]=useState(false);
   const [addbutton , setaddbutton]=useState(true);
@@ -58,6 +59,8 @@ if(localemail){
       setLoading(false);
     }, 1500); 
   };
+
+
 
   const modelhandel=()=>{
     setshowloginmodel(false)
