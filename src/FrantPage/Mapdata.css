@@ -1,52 +1,39 @@
-
-
-  .city-btn {
-    background-color: #3492a0;
-    color: white;
-    border: none;
-    padding: 8px 13px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-  .city-btn:hover {
-    background-color: #287080;
-    transform: scale(1.05);
-  }
-
-  .city-btn:focus {
-    outline: none;
-  }
-
-  @media (max-width: 480px) {
-    .city-btn {
-      width: 100%;
-    }
-  }
-
-
-
-  .suggestions-container {
-  position: absolute;
+.suggestions-container {
   background: white;
   border: 1px solid #ccc;
-  width: 500px;
   max-height: 200px;
   overflow-y: auto;
-  z-index: 10;
-  margin-top: 2px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  position: absolute;
+  z-index: 1000;
+  top: 100%;
+  left: 0;
 }
 
 .suggestion-item {
-  padding: 8px 10px;
+  padding: 10px;
   cursor: pointer;
+  border-bottom: 1px solid #eee;
 }
 
 .suggestion-item:hover {
-  background-color: #f0f0f0;
+  background-color: #f2f2f2;
 }
 
+/* Responsive design */
+@media (max-width: 600px) {
+  .suggestions-container {
+    width: 90%;
+    max-width: none;
+  }
 
+  .city-btn {
+    flex: 1 1 40%;
+    font-size: 13px;
+  }
+
+  input[type="text"] {
+    width: 100% !important;
+  }
+}

@@ -50,7 +50,7 @@ const Footer = () => {
       </div>
 
       <div style={styles.bottom}>
-        <p style={styles.bottomText}>© {new Date().getFullYear()} HotStream. All rights reserved.</p><br />
+        <p style={styles.bottomText}>© {new Date().getFullYear()} HotStream. All rights reserved.</p>
         <p>Devloped by Vishal Prajapati</p>
       </div>
     </footer>

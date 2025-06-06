@@ -340,6 +340,21 @@ useEffect(()=>{
   setlocationdataType(item)
  }
 
+   const stateDistrictData = {
+  "Uttar Pradesh": ["Agra", "Lucknow", "Kanpur", "Varanasi", "Noida","Bulandshahr"],
+  "Delhi": ["New Delhi", "South Delhi", "North Delhi", "East Delhi", "West Delhi"],
+  "Himachal Pradesh": ["Shimla", "Mandi", "Kullu", "Dharamshala", "Solan"],
+  "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer"],
+  "Haryana": ["Gurgaon", "Faridabad", "Panipat", "Sonipat", "Karnal"],
+};
+     const districts = stateValue ? stateDistrictData[stateValue] : [];
+
+  // State change handler: state set karo aur district reset kar do
+  const handleStateChange = (e) => {
+    setStateValue(e.target.value);
+    setDistrict(''); // jab state change ho to district empty kar dena
+  };
+
   return (
     <>
   
@@ -377,26 +392,32 @@ useEffect(()=>{
          <div className="row mb-3">                           
 
            <div className="col-md-6">
-             <label><b>State:</b></label>
-             <select style={{fontSize:"13px",width:"100%",height:"32px", borderRadius:"5px",border:"0.5px solid lightgray"}} value={stateValue}   onChange={(e)=>{setStateValue(e.target.value)}}>
-               <option selected hidden disabled></option>
-               <option>Uttar Pradesh</option>
-               <option>Delhi</option>
-               <option>Himachal Pradesh</option>
-               <option>Rajasthan</option>
-               <option>Haryana</option>
-             </select>
+              <label><b>State:</b></label>
+      <select
+        value={stateValue}
+        onChange={handleStateChange}
+        style={{ fontSize: "13px", width: "100%", height: "32px", borderRadius: "5px", border: "0.5px solid lightgray" }}
+      >
+        <option value="" disabled hidden>--Select State--</option>
+        {Object.keys(stateDistrictData).map((state) => (
+          <option key={state} value={state}>{state}</option>
+        ))}
+      </select>
            </div>
            <div className="col-md-6">
-             <label><b>District:</b></label><br />
-             <select style={{fontSize:"13px",width:"100%",height:"32px", borderRadius:"5px",border:"0.5px solid lightgray"}} value={district} onChange={(e)=>setDistrict(e.target.value)}>
-               <option selected disabled hidden></option>
-               <option>Uttar Pradesh</option>
-               <option>Delhi</option>
-               <option>Himachal Pradesh</option>
-               <option>Rajasthan</option>
-               <option>Haryana</option>
-             </select>
+          
+              <label><b>District:</b></label><br />
+      <select
+        value={district}
+        onChange={(e) => setDistrict(e.target.value)}
+        disabled={!stateValue} // state choose na kiya ho to disable karein
+        style={{ fontSize: "13px", width: "100%", height: "32px", borderRadius: "5px", border: "0.5px solid lightgray" }}
+      >
+        <option value="" disabled hidden>--Select District--</option>
+        {districts.map((dist) => (
+          <option key={dist} value={dist}>{dist}</option>
+        ))}
+      </select>
            </div>
          </div>
          <div className="row mb-3">
@@ -451,7 +472,6 @@ useEffect(()=>{
                }
                {(addNewClicked || isEditing) && <button className='btn btn-danger' type='button' onClick={()=>{setAddNewClicked(false),setIsEditing(false),setchangepop(!changepop)}}>Cancel</button>}
                <button  className="btn "  style={{background:"#0a8d94",color:"white",border:"none",outline:"none"}} >Save</button>
-     
          </div>
             </form>
           ) : (
