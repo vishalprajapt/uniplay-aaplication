@@ -50,13 +50,8 @@ const Footer = () => {
       </div>
 
       <div style={styles.bottom}>
-<<<<<<< HEAD
         <p style={styles.bottomText}>© {new Date().getFullYear()} HotStream. All rights reserved.</p>
         <p>Devloped by Vishal Prajapati</p>
-=======
-        <p style={styles.bottomText}>© {new Date().getFullYear()} HotStream. All rights reserved.</p><br />
-        <p>Developed by Vishal Prajapati</p>
->>>>>>> ff4f5ded99a0802fc27a9912e62d651f9cfff0f5
       </div>
     </footer>
   );
