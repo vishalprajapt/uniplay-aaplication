@@ -1,7 +1,7 @@
 
 // SmallLoader.js
 import React from 'react';
-import './SmallLoder.css';
+import './SmallLoader.css';
 
 function SmallLoader() {
   return (
