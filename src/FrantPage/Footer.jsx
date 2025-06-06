@@ -51,7 +51,7 @@ const Footer = () => {
 
       <div style={styles.bottom}>
         <p style={styles.bottomText}>© {new Date().getFullYear()} HotStream. All rights reserved.</p><br />
-        <p>Devloped by Vishal Prajapati</p>
+        <p>Developed by Vishal Prajapati</p>
       </div>
     </footer>
   );
