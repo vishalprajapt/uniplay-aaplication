@@ -45,7 +45,7 @@ import FAQs from './FrantPage/FAQs';
 import Mazagine from './FrantPage/Mazagine';
 import Magazinedata from './FrantPage/Magazinedata';
 import Buymagazine from './FrantPage/Buymagazine';
-import Watchdatapdf from './FrantPage/watchdatapdf';
+import Watchdatapdf from './FrantPage/Watchdatapdf';
 import Myorder from './FrantPage/Myorder';
 
 
