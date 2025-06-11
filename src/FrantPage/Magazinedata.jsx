@@ -41,8 +41,14 @@ if(localemail){
   console.log(localdata);
  
   const handalepdfdata=(item)=>{
-    Dispatch(datapdf(item)) 
-    navigate("/watch-datapdf")
+    // Dispatch(datapdf(item)) 
+    // navigate("/watch-datapdf")
+  
+        if (item.pdfdata) {
+          window.open(item.pdfdata, "_blank");
+        }
+    
+    
   }
   
 

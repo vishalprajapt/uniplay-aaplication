@@ -10,12 +10,11 @@ function Watchdatapdf() {
   return (
     <>
     <iframe src={purchasedMagazines.pdfdata} 
-    
-          width="100%"
+       
+      width="100%"
       height="600px"
       style={{ border: 'none' }}
       title="PDF Viewer"
-
     ></iframe>
     </>
   )

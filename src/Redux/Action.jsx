@@ -172,6 +172,27 @@ export  const myorderdata=(item)=>{
   }
 }
 
+export const Bookmart=(item)=>{
+  return{
+    type:'Bookmartdata',
+    payload:item
+
+  }
+}
+
+export const Bookid=(id)=>{
+  return{
+    type:"BOOK_ID",
+    payload:id
+  }
+}
+
+export const bookmarkiddelete=(id)=>{
+  return{
+    type:"BOOK_Delete",
+    payload:id
+  }
+}
 
 // export const Watchdata=()=>{
 //     return{

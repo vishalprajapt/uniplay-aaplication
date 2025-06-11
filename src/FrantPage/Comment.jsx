@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { commentdata } from '../Redux/Action';
 import { FaStar } from "react-icons/fa6";
 import Model from './Model';
+import "./Term.css";
 
 function CommentBox({sendid}) {
  const [inputdata, setinputdata]=useState("")
@@ -11,6 +12,7 @@ function CommentBox({sendid}) {
      const [alertMessage, setAlertMessage]=useState("")
      const [alertType ,setAlertType]=useState("");
        const [showModel, setShowModel] = useState(false);
+         const [hoverRating, setHoverRating] = useState(0);
 console.log("sendid",sendid);
 console.log("inputdata",inputdata);
 console.log("rating",rating);
@@ -64,9 +66,12 @@ setTimeout(() => {
             <span
               key={star}
               onClick={() => setRating(star)}
+                 onMouseEnter={() => setHoverRating(star)}
+              onMouseLeave={() => setHoverRating(0)}
+              className='mystar'
               style={{
                 fontSize: "24px",
-                color: star <= rating ? "gold" : "gray",
+               color: star <= (hoverRating || rating) ? "gold" : "gray",
                 cursor: "pointer"
               }}      
             >

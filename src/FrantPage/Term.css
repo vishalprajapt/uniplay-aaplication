@@ -36,3 +36,7 @@
     line-height: 1.6;
   }
   
+
+  .mystar:hover{
+    color:  gold;
+  }

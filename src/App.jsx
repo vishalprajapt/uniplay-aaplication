@@ -47,6 +47,7 @@ import Magazinedata from './FrantPage/Magazinedata';
 import Buymagazine from './FrantPage/Buymagazine';
 import Watchdatapdf from './FrantPage/Watchdatapdf';
 import Myorder from './FrantPage/Myorder';
+import Myvideo from './FrantPage/Myvideo';
 
 
 
@@ -150,6 +151,7 @@ function App(){
       <Route  path='/buymagazine' element={<Buymagazine/>}/>
       <Route path='/watch-datapdf' element={<Watchdatapdf/>}/>
       <Route  path='/my-order' element={<div style={{marginTop:"80px"}}><Myorder/></div>}/>
+      <Route path='/upload' element={<Myvideo/>}/>
 
   
       <Route path='*' element={<h2>404 Found page</h2>}/>

@@ -6,7 +6,9 @@ import {  useNavigate,Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {Logindata} from "../Redux/Action"
 import { HiArrowLongLeft } from "react-icons/hi2";
-import "./Loginform.css"
+import "./Loginform.css";
+import OtpInput from 'react-otp-input';
+import { LiaEdit } from "react-icons/lia";
 
 function App3() {
 
@@ -18,6 +20,7 @@ function App3() {
    const [myloading, setmyloading]=useState(true)
    const accountnavigate=useNavigate();
     const [alertType, setAlertType] = useState("");
+    const [phoneNumber, setphoneNumber]=useState('')
 
    const Dispatch= useDispatch();
 
@@ -54,13 +57,56 @@ const passworddata=(e)=>{
 //  console.log("password" , password);
   
 }
+
+const Numberdata=(e)=>{
+    let  value=e.target.value
+    console.log('value', value)
+   if( value>5 && value.length<11){
+    setphoneNumber(value)
+   }
+   else if(value == "") {
+    setphoneNumber("")
+   }
+   }
 const logindata={email:"admin@gmail.com", password:"12345678",phone:7505200576,Name:"Vishal" };
+
+
+const [otpSent, setOtpSent] = useState(false); 
+const [otp, setOtp] = useState('');
+
+
+
+const handleOtpChange = (index, value) => {
+  if (/^\d?$/.test(value)) { 
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+  }
+};
+
+
+console.log("otp",otp)
 
 const submitdata=(e)=>{
 
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  //  const phonePattern = /^[0-9]{10}$/;
 
  e.preventDefault();
+
+ if(loginNumber){
+  if(phoneNumber.length===0){
+    setAlertMessage('Enter Phone Number')
+ setshowpop(true) 
+ setAlertType("error")
+  }else {
+      setAlertType("success");
+      setAlertMessage("OTP Sent to your phone");
+      setshowpop(true);
+      setOtpSent(true); // show OTP input
+      setinputbox(true)
+    }
+ }else{
 if(email.length === 0){
  setAlertMessage('Enter email')
  setshowpop(true)
@@ -98,7 +144,7 @@ else{
  // Dispatch(Logindata({email: logindata.email, password: logindata.password, phone:logindata.phone, Name:logindata.Name }))
   accountnavigate("/")
   
-}
+}}
 }
 
 
@@ -121,6 +167,38 @@ useEffect(() => {
 
 }, []);
 
+
+  const [loginNumber, setloginNumber]=useState(false)
+  const [inputbox, setinputbox]=useState(false)
+
+
+  const verifyOtp = () => {
+
+  if (otp === "123456" ) {
+    setAlertType("success");
+    setAlertMessage("OTP Verified! Login Success");
+    setshowpop(true);
+    setTimeout(() => {
+       setAlertMessage("Successfull login")
+    }, 2000);
+      localStorage.setItem("email",logindata.email)
+       localStorage.setItem( "password",logindata.password)
+       localStorage.setItem( "phone",phoneNumber,)
+       localStorage.setItem(  "Name",logindata.Name)
+    accountnavigate("/");
+  } else {
+    if(otp.length===0){
+        setAlertType("error");
+    setAlertMessage("Please enter OTP");
+    setshowpop(true);
+    }else{
+       setAlertType("error");
+    setAlertMessage("Invalid OTP");
+    setshowpop(true);
+    }
+   
+  }
+};
 
 
   return (
@@ -190,13 +268,89 @@ useEffect(() => {
           }}
         >
           <form onSubmit={submitdata}>
-            <div style={{ marginBottom: "1rem" }}>
+           {loginNumber ?
+           <>
+            {!inputbox ?
+
+              <div style={{
+  marginBottom: "1rem",
+  display: "flex",
+  alignItems: "center",
+  gap: "8px",
+  border: "1px solid #ccc",
+  borderRadius: "8px",
+  padding: "0 12px",
+
+  height: "45px",
+ 
+}}>
+  <span style={{
+    fontSize: "14px",
+    color: "#555",
+    fontWeight: "500"
+  }}>+91</span>
+
+  <input
+    type="tel"
+    value={phoneNumber}
+    placeholder="Enter phone number"
+    style={{
+      flex: 1,
+      height: "100%",
+      border: "none",
+      outline: "none",
+      fontSize: "14px",
+      backgroundColor: "transparent"
+    }}
+    autoComplete="off"
+    onChange={(e) => Numberdata(e)}
+  />
+</div>
+:
+         <>
+{loginNumber && otpSent && (
+  <div>
+     
+    <h4>Enter OTP!</h4>
+    <p style={{fontSize:"13px"}}>We've sent an OTP to your registered mobile number</p>
+    <p>+<span style={{marginRight:"3px"}}>91</span>{phoneNumber}<span style={{fontSize:"25px", color:"red",cursor:"pointer",marginTop:"0px",paddingTop:"0px"}}  onClick={()=>{setinputbox(!inputbox), setOtpSent(!otpSent)}}><LiaEdit  />
+</span></p>
+
+  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
+    <OtpInput
+
+      value={otp}
+      onChange={setOtp}
+      numInputs={6}
+      renderSeparator={<span style={{padding:"0px 8px"}}></span>}
+      renderInput={(props) => <input {...props}
+      
+       style={{
+            width: "50px",       
+            height: "50px",      
+            fontSize: "20px",    
+            textAlign: "center", 
+            border: "1px solid #ccc",
+            borderRadius: "8px", 
+          }}
+      />}
+    />
+  </div>
+  </div>
+)}
+
+         </>
+            }
+            </>
+            :
+             <div style={{ marginBottom: "1rem" }}>
               <label>
                 <b>Email</b>
               </label>
               <br />
               <input
                 type="text"
+                placeholder='Enter your email'
                 style={{
                   width: "100%",
                   height: "40px",
@@ -208,7 +362,9 @@ useEffect(() => {
                 onChange={(e) => Emaildata(e)}
               />
             </div>
-
+          }
+             {!loginNumber &&
+             
             <div style={{ marginBottom: "1rem" }}>
               <label>
                 <b>Password</b>
@@ -224,6 +380,7 @@ useEffect(() => {
               >
                 <input
                   type={showpassword ? "text" : "password"}
+                  placeholder='Enter  your password'
                   style={{
                     flex: 1,
                     height: "40px",
@@ -253,15 +410,24 @@ useEffect(() => {
                 </button>
               </div>
             </div>
+             }
 
             <div>
+            {!inputbox && <p style={{fontSize:"13px" }}><button type='button' className='btn' style={{background:" #3492a0", padding:'3px 6px', borderRadius:"5px", color:"white"}}  onClick={()=>{setloginNumber(!loginNumber), setphoneNumber("")}}>Login with {loginNumber?"Email":"Number"}</button></p>}
               <p style={{fontSize:"13px"}}>By continuing, you agree to Uniplay of <span><Link to={"/termcondition"}  style={{textDecoration:"none"}}>Terms of Use</Link></span> and <span><Link to={"/policy"} style={{textDecoration:"none"}}>Privacy Policy</Link></span>.</p>
             </div>
-
+            
             <div style={{maxWidth:"100%" }}>
-              <button className="btn " style={{background:"#3492a0",color:"white",width:"100%",height:"40px"}} type="submit">
-                Submit
-              </button>
+          {(loginNumber && otpSent) || inputbox ? (
+  <button className="btn" style={{ background: "#3492a0", color: "white", width: "100%", height: "40px" }} type="button" onClick={verifyOtp}>
+    Verify OTP
+  </button>
+) : (
+  <button className="btn" style={{ background: "#3492a0", color: "white", width: "100%", height: "40px" }} type="submit">
+    Submit
+  </button>
+)}
+
             </div>
           </form>
 

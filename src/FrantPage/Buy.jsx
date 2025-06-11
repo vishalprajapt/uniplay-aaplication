@@ -415,10 +415,7 @@ useEffect(()=>{
               <div>
               <div className="d-flex  align-items-center mb-2">
                 <span style={{marginRight:"10px"}} ><input className="form-check-input"  name='a' type="radio" checked={SelectId === index}
-              
-              onChange={()=>dispatch(Idstore(index))}
-             
-             />
+              onChange={()=>dispatch(Idstore(index))}  />
           </span>
               <p className="mb-0 fw-bold"><b>{item.Name}</b></p>
             </div>

@@ -231,7 +231,10 @@ const Buydatastorage={
     Magazinecart:null,
     magazinedataid:[],
     Pdfreducer:null,
-    Ordereducer:[]
+    Ordereducer:[],
+    Bookmartcart:[],
+    Bookidcart:[null],
+
 }
 
 const Buyallreducer=(state=Buydatastorage,action)=>{
@@ -269,7 +272,22 @@ const Buyallreducer=(state=Buydatastorage,action)=>{
                         return{
                            ...state,
                            Ordereducer:[...state.Ordereducer, action.payload]
-                        }         
+                        } 
+                        case "Bookmartdata":
+                        return{
+                            ...state,
+                            Bookmartcart:[...state.Bookmartcart, action.payload]
+                        } 
+                        case "BOOK_Delete":
+                            return{
+                                ...state,
+                                Bookmartcart:state.Bookmartcart.filter((item, index)=>index!==action.payload)
+                            }
+                        case "BOOK_ID":
+                            return{
+                                ...state,
+                                Bookidcart: action.payload
+                            }        
                    default:
                 return state;
     }
