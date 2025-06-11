@@ -75,7 +75,8 @@ function App(){
   '/', '/Header', '/Loginform', '/Signupform', '/UserAccount', '/Watch', '/Buypage',
   '/ViewData-page', '/study-page', '/news-page', '/sports', '/music', '/games',
   '/entertainment', '/service', '/Addcart', '/termcondition', '/policy', '/contact',
-  '/about', '/Free-demo','/faq','/magazine','/magazine-data',"buymagazine","/my-order"
+  '/about', '/Free-demo','/faq','/magazine','/magazine-data',"buymagazine","/my-order",
+  '/upload'
 ];
   const is404 = validPaths.includes(location.pathname);
 
@@ -151,7 +152,7 @@ function App(){
       <Route  path='/buymagazine' element={<Buymagazine/>}/>
       <Route path='/watch-datapdf' element={<Watchdatapdf/>}/>
       <Route  path='/my-order' element={<div style={{marginTop:"80px"}}><Myorder/></div>}/>
-      <Route path='/upload' element={<Myvideo/>}/>
+      <Route path='/upload' element={<div style={{marginTop:"150px"}}><Myvideo/></div>}/>
 
   
       <Route path='*' element={<h2>404 Found page</h2>}/>

@@ -42,7 +42,7 @@ function Mazagine() {
     },
     {
       id: 204,
-      titele: 'Spring Board Academy RAS Foundation history of rajasthan Magazines  (english)',
+      titele: 'Spring Board Academy  history of rajasthan Magazines  (english)',
       pic: '/img/magazine6.webp',
       price: 259,
       status:"online",
@@ -95,7 +95,7 @@ function Mazagine() {
     },
     {
       id: 210,
-      titele: 'Mind Map Merathan Rajasthan Ramban Sampuran Rajasthan Gk Written By Madan Sir Magazines  (hindi)',
+      titele: 'Mind Map Merathan  Sampuran Rajasthan Gk Written By Madan Sir Magazines  (hindi)',
       pic: '/img/magazine12.webp',
       price: 229,
       status:"offline",
@@ -112,7 +112,7 @@ function Mazagine() {
     },
     {
       id: 212,
-      titele: 'Spring Board Academy RAS Foundation history of rajasthan Magazines  (english)',
+      titele: 'Spring Board Academy  history of rajasthan Magazines  (english)',
       pic: '/img/magazine5.webp',
       price: 259,
       status:"offline",
@@ -188,6 +188,7 @@ function Mazagine() {
     // debouncedSearch(value); // ✅ only pass the string
   };
  
+   const [ViewMagzine, setViewMagzine]=useState(null)
 
   return (
     <div className='container ' style={{padding:"50px 0px"}}>
@@ -296,7 +297,13 @@ function Mazagine() {
                 <span>
                   <b style={{ marginRight: '10px' }}>{`₹${item.price}`}</b>
                   <del>{`₹${item.price + 100}`}</del>
-                </span>
+                </span><br />
+                <button 
+                
+               onMouseEnter={()=>setViewMagzine(index)}
+               onMouseLeave={()=>setViewMagzine(null)}
+               style={{background:ViewMagzine===index?" #17a2b8":"white", color:ViewMagzine===index?"white":" #17a2b8", border:"1px solid  #17a2b8", borderRadius:"5px", padding:"5px 7px",fontSize:"14px",marginTop:"5px"}}
+                >View</button>
               </div>
             </animated.div>
           </div>
