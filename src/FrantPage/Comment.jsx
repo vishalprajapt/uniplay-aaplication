@@ -4,6 +4,7 @@ import { commentdata } from '../Redux/Action';
 import { FaStar } from "react-icons/fa6";
 import Model from './Model';
 import "./Term.css";
+import "./Comment.css"
 
 function CommentBox({sendid}) {
  const [inputdata, setinputdata]=useState("")
@@ -56,32 +57,39 @@ setTimeout(() => {
    
   { showModel && <Model   data={alertMessage} type={alertType} />}
    <div>
-    <div>
-        <form action="" onSubmit={handleform}>
-        <input type="text" placeholder='leave a review...'  value={inputdata} style={{height:"40px",width:"50%",padding:"10px",fontSize:"20px"}} onChange={(e)=>{setinputdata(e.target.value)}}/>
-            <button  className='btn ' style={{height:"40px",background:"#3492a0",color:"white",marginLeft:"20px"}} >Review</button>
-    </form>
-     <div style={{ marginTop: "10px" }}>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span
-              key={star}
-              onClick={() => setRating(star)}
-                 onMouseEnter={() => setHoverRating(star)}
-              onMouseLeave={() => setHoverRating(0)}
-              className='mystar'
-              style={{
-                fontSize: "24px",
-               color: star <= (hoverRating || rating) ? "gold" : "gray",
-                cursor: "pointer"
-              }}      
-            >
-            <FaStar />
-            </span>
-          ))}
-        </div>
-    </div>
-    
-    </div>
+  <form onSubmit={handleform} className="review-form">
+    <input
+      type="text"
+      placeholder="Leave a review..."
+      value={inputdata}
+      className="review-input"
+      onChange={(e) => setinputdata(e.target.value)}
+    />
+    <button type="submit" className="review-button">
+      Review
+    </button>
+  </form>
+
+  <div style={{ marginTop: "10px" }}>
+    {[1, 2, 3, 4, 5].map((star) => (
+      <span
+        key={star}
+        onClick={() => setRating(star)}
+        onMouseEnter={() => setHoverRating(star)}
+        onMouseLeave={() => setHoverRating(0)}
+        className="mystar"
+        style={{
+          fontSize: "24px",
+          color: star <= (hoverRating || rating) ? "gold" : "gray",
+          cursor: "pointer",
+        }}
+      >
+        <FaStar />
+      </span>
+    ))}
+  </div>
+</div>
+
     </>
   )
 }

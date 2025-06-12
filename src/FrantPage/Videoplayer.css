@@ -1,0 +1,218 @@
+/* Book Panel Container */
+.Mybookpannel {
+  border-radius: 12px;
+  padding: 16px;
+  max-width: 250px;
+  width: 100%;
+  height: 72vh; /* Responsive height */
+  /* min-height: 400px; */
+  background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Scrollable Bookmarks Area */
+.Mybookscrollbox {
+  overflow-y: auto;
+  flex: 1;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+/* Add Bookmark Button */
+.Mybookpannelbutton {
+  padding: 10px;
+  background-color: #3492a0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.Mybookpannelbutton:hover {
+  background-color: #2e7a8a;
+}
+
+/* Bookmark Item Text */
+.bookmark-item-text {
+  flex: 1;
+  cursor: pointer;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+}
+
+.bookmark-item-text p {
+  font-weight: bold;
+  margin: 0 0 5px;
+  color: #333;
+  font-size: 15px;
+}
+
+.bookmark-item-text span {
+  display: block;
+  font-size: 14px;
+  color: #555;
+}
+
+.mYnoYet{
+  text-align: center;
+  color: #999;
+  font-size: 13px ;
+}
+
+
+/* Card styling */
+.bookmark-card {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+.Titlebookmart{
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 15px;
+
+}
+
+
+
+/* Tablet and small laptop */
+@media (max-width: 768px) {
+  .Mybookpannel {
+    height: 50vh;
+    padding: 12px;
+     max-width: 120px;
+    width: 100%;
+  }
+
+  .Mybookscrollbox {
+    margin-bottom: 7px;
+    font-size: 14px;
+      padding: 8px;
+  }
+
+  .Mybookpannelbutton {
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  .bookmark-card {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .bookmark-item-text p {
+    font-size: 13px;
+  }
+
+  .bookmark-item-text span {
+    font-size: 12px;
+  }
+  .mYnoYet{
+  text-align: center;
+  color: #999;
+  font-size: 11px ;
+}
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .Mybookpannel {
+    height: 25vh;
+    max-width: 100px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .Mybookscrollbox {
+     margin-bottom: 6px;
+    font-size: 10px;
+      padding: 5px;
+  }
+
+
+  .Mybookpannelbutton {
+    font-size: 8px;
+    padding: 5px;
+  }
+
+  .bookmark-card {
+    padding: 2px 4px;
+    font-size: 8px;
+  }
+
+  .bookmark-item-text p {
+    font-size: 12px;
+  }
+
+  .bookmark-item-text span {
+    font-size: 11px;
+  }
+  .Titlebookmart{
+    font-size: 7px;
+  }
+  .mYnoYet{
+  text-align: center;
+  color: #999;
+  font-size: 10px ;
+}
+}
+
+/* iPhone SE & very small screens */
+@media (max-width: 360px) {
+ 
+  .Mybookpannel {
+    height: 20vh;
+      max-width: 50px;
+      width: 100%;
+      padding: 5px;
+  }
+
+    .Mybookscrollbox {
+      margin-bottom: 3px;
+    font-size: 5px;
+      padding: 2px;
+  }
+  .Mybookpannelbutton {
+    font-size: 7px;
+    padding: 2px;
+  }
+
+  .bookmark-card {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  .bookmark-item-text p {
+    font-size: 11px;
+  }
+
+  .bookmark-item-text span {
+    font-size: 10px;
+  }
+  .Titlebookmart{
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+  .mYnoYet{
+  text-align: center;
+  color: #999;
+  font-size: 7px ;
+}
+}

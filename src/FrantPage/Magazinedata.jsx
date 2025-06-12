@@ -39,20 +39,17 @@ if(localemail){
   const localdata=localStorage.getItem("pathname")
 
   console.log(localdata);
- 
   const handalepdfdata=(item)=>{
     // Dispatch(datapdf(item)) 
     // navigate("/watch-datapdf")
   
-  if (item.pdfdata) {
-    const link = document.createElement("a");
+        if (item.pdfdata) {
+     const link = document.createElement("a");
     link.href = item.pdfdata;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     link.click();
-  }
-    
-    
+      }
   }
   
 

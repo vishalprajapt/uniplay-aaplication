@@ -12,6 +12,7 @@ import { IoClose } from "react-icons/io5";
 import { BiPlay } from "react-icons/bi";
 import { CgPlayPause } from "react-icons/cg";
 import { MdDelete } from "react-icons/md";
+import "./Videoplayer.css"
 
 
 {/*  */}
@@ -101,11 +102,7 @@ console.log("Selector",Selector);
   const handleRightDoubleClick = () => {
     seekBy(10); 
   };
-  //  const [comments, setComments] = useState([]);
-
-  // const handleCommentSubmit = (newComment) => {
-  //   setComments((prev) => [...prev, newComment]);
-  // };
+ 
 
   const [showBookmart, setshowBookmart]=useState(false)
   const [bookmarkNote, setbookmarkNote]=useState('')
@@ -170,7 +167,7 @@ console.log("Selector",Selector);
 <>
 <div style={{
   display: "flex",
-  flexWrap: "wrap",
+
   gap: "20px",
   justifyContent: "center",
   alignItems: "flex-start",
@@ -181,7 +178,7 @@ console.log("Selector",Selector);
     position: "relative",
     maxWidth: "800px",
     width: "100%",
-    flex: "1 1 600px"
+  
   }}>
     <div data-vjs-player>
       <video
@@ -193,61 +190,40 @@ console.log("Selector",Selector);
   </div>
 
   {/* Bookmark Panel */}
- <div style={{
-  borderRadius: "12px",
-  padding: "16px",
-  maxWidth: "280px",
-  width: "100%",
-  height: "500px",
-  background: "#ffffff",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-  border: "1px solid #e0e0e0",
-  overflow: "hidden",
-}}>
-
-  <div style={{ flex: 1, overflowY: "auto", marginBottom: "12px" }}>
-    <h3 style={{ textAlign: "center", color: "#333", marginBottom: "15px" }}>Bookmarks</h3>
+ <div className="Mybookpannel">
+  <div className="Mybookscrollbox">
+    <h3  className="Titlebookmart">Bookmarks</h3>
 
     {Bookmartlist?.filter(item => item.id === videoid).length > 0 ? (
       Bookmartlist.filter(item => item.id === videoid).map((item, index) => (
-        <div key={index} style={{
-          background: "#f5f5f5",
-          borderRadius: "8px",
-          padding: "12px",
-          marginBottom: "10px",
-          transition: "transform 0.2s ease",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}>
-          <div style={{ flex: 1, cursor: "pointer" }}
-            onClick={() => {
-              replacetimedata(item.Time);
-              Dispatch(Bookid(index));
-            }}
-          >
-            <p style={{ fontWeight: "bold", margin: "0 0 5px", color: "#333" }}>{item.Time}</p>
-            <span style={{ display: "block", fontSize: "14px", color: "#555" }}>{item.note}</span>
-          </div>
+       <div key={index} className="bookmark-card">
+  <div
+    className="bookmark-item-text"
+    onClick={() => {
+      replacetimedata(item.Time);
+      Dispatch(Bookid(index));
+    }}
+  >
+    <p>{item.Time}</p>
+    <span>{item.note}</span>
+  </div>
 
-          <div
-            onClick={() => Handleremovedata(index)}
-            style={{
-              marginLeft: "10px",
-              color: "#d9534f",
-              cursor: "pointer",
-              fontSize: "18px"
-            }}
-          >
-            <MdDelete />
-          </div>
-        </div>
+  <div
+    onClick={() => Handleremovedata(index)}
+    style={{
+      marginLeft: "10px",
+      color: "#d9534f",
+      cursor: "pointer",
+      fontSize: "18px"
+    }}
+  >
+    <MdDelete />
+  </div>
+</div>
+
       ))
     ) : (
-      <p style={{ textAlign: "center", color: "#999", fontSize: "14px" }}>No bookmarks yet</p>
+      <p  className="mYnoYet">No bookmarks yet</p>
     )}
   </div>
 
@@ -259,24 +235,11 @@ console.log("Selector",Selector);
       }
       setshowBookmart(true);
     }}
-    style={{
-      padding: "12px",
-      backgroundColor: "#3492a0",
-      color: "#fff",
-      border: "none",
-      borderRadius: "8px",
-      fontSize: "16px",
-      fontWeight: "bold",
-      cursor: "pointer",
-      transition: "background-color 0.3s ease"
-    }}
-    onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#2e7a8a"}
-    onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#3492a0"}
+    className="Mybookpannelbutton"
   >
     + Add Bookmark
   </button>
 </div>
-
 
 </div>
 

@@ -266,13 +266,14 @@ function Mazagine() {
               className="rounded"
               style={{
                 ...springStyle,
-                padding: '10px 5px 5px 30px',
+                padding: '10px 5px 10px 30px',
                 background: '#fff',
                 width: '100%',
-                height: '360px',
+                height: '370px',
                 cursor: 'pointer',
                 boxShadow: '0px 4px 10px rgba(0,0,0,0.2)',
                 borderRadius: '10px',
+                
              
               }}
             >
