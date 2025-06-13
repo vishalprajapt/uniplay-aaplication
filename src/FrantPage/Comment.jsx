@@ -9,11 +9,11 @@ import "./Comment.css"
 function CommentBox({sendid}) {
  const [inputdata, setinputdata]=useState("")
  const Dispatch=useDispatch()
-     const [rating, setRating] = useState(0);
-     const [alertMessage, setAlertMessage]=useState("")
-     const [alertType ,setAlertType]=useState("");
-       const [showModel, setShowModel] = useState(false);
-         const [hoverRating, setHoverRating] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [alertMessage, setAlertMessage]=useState("")
+  const [alertType ,setAlertType]=useState("");
+  const [showModel, setShowModel] = useState(false);
+  const [hoverRating, setHoverRating] = useState(0);
 console.log("sendid",sendid);
 console.log("inputdata",inputdata);
 console.log("rating",rating);

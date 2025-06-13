@@ -3,7 +3,7 @@ import React,{lazy, Suspense, useEffect, useState} from 'react'
 
 const Home = lazy(() =>
   new Promise(resolve => {
-    setTimeout(() => resolve(import('./FrantPage/Home')), 1500); // 1.5 second delay
+    setTimeout(() => resolve(import('./FrantPage/Home')), 5000); // 1.5 second delay
   })
 );
 

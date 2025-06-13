@@ -148,7 +148,9 @@ if(localemail){
       {localemail &&
       (
         <>
-      {item.status==="online" &&
+      {item.status==="online"  &&
+      <>
+       {!buttonloder ?(
          <button
       className="btn btn-info"
             onMouseEnter={()=>setaddbutton(!addbutton)}
@@ -156,7 +158,16 @@ if(localemail){
       style={{background:addbutton?" #17a2b8":"white", color:addbutton?"white":" #17a2b8", border:"2px solid  #17a2b8", borderRadius:"5px"}}
       onClick={()=>handleClick(item)}
     >
-    {!buttonloder ?" Add to cart":<span> {loading ? (
+    Add to cart
+    </button>)
+    :(
+      
+        <button
+      className="btn btn-info"
+            onMouseEnter={()=>setaddbutton(!addbutton)}
+      onMouseLeave={()=>setaddbutton(!addbutton)}
+      style={{background:addbutton?" #17a2b8":"white", color:addbutton?"white":" #17a2b8", border:"2px solid  #17a2b8", borderRadius:"5px"}}>
+    <span> {loading ? (
         <>
           <span
             className="spinner-border spinner-border-sm me-2"
@@ -166,9 +177,11 @@ if(localemail){
           Loading...
         </>
       ) : (
-        'Added item'
-      )}</span>}
+       " Added item"
+      )}</span>
     </button>
+     )}
+     </>
 }</>)
 }
     </div>
