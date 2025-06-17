@@ -11,7 +11,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import Navbar from './Navbar'
-import { useLocation } from 'react-router-dom'
+import { useLocation,  Link } from 'react-router-dom'
 const LoginModal=lazy(()=>import("./Loginmodel"))
 import { BuycardVideos ,YouTubeVideo,Viewcarddata,Addtocartdata} from '../Redux/Action'
 import { useDispatch,useSelector } from 'react-redux'
@@ -128,7 +128,7 @@ function Freedemo() {
         expanded:false,
         subcategory:"Top 10",
         price:"199",
-        link:"https://youtu.be/x8RKFRNCzcg?si=EGauwj1YYh_DvEdz",
+        link:"https://www.youtube.com/embed/Drk0gHwMr8I?si=PUcMUL-6M5kPLzUd&amp;start=6",
       },
       {
         id:177,
@@ -430,7 +430,9 @@ function Freedemo() {
 
   return (
    <>
-   
+    <div  style={{width:"50px", height:"50px", position :"fixed", bottom:"30px", zIndex:"1000", right:"30px"}}>
+       <Link   to="https://wa.me/917505200576?text=Hello%20Uniplay" target='_blank'><img src="/img/WhatsApp.svg" alt="whatsappimg" /></Link>
+       </div>
      
    {rightpop && <Model data={alertMessage} />}
    

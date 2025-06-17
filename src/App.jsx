@@ -3,7 +3,7 @@ import React,{lazy, Suspense, useEffect, useState} from 'react'
 
 const Home = lazy(() =>
   new Promise(resolve => {
-    setTimeout(() => resolve(import('./FrantPage/Home')), 5000); // 1.5 second delay
+    setTimeout(() => resolve(import('./FrantPage/Home')), 4000); // 1.5 second delay
   })
 );
 
@@ -79,11 +79,10 @@ function App(){
   '/upload'
 ];
   const is404 = validPaths.includes(location.pathname);
+  const [showlogo, setshowlogo]=useState(true)
 
- const [showlogo, setshowlogo]=useState(true)
 
   const isAuthPage = location.pathname === '/Loginform' || location.pathname === '/Signupform' || location.pathname==="/Watch" || location.pathname==="/UserAccount";
-
   useEffect(()=>{
     setTimeout(() => {
       setshowlogo(false)
@@ -118,10 +117,10 @@ function App(){
                  && location.pathname !== '/my-order'
                   && location.pathname !== '/'
     && <Navbar />}
-   
+
     <Routes>
       <Route path='/' element={<Suspense fallback={<Homeloder/>}>
-        <Home />
+        <Home/>
       </Suspense>} />
       <Route path='/Header' element={<Header/>}/>
       <Route path='/Loginform' element={<div style={{marginTop:"75px"}}><Loginform/></div>}/>
@@ -140,8 +139,7 @@ function App(){
       <Route path='/entertainment' element={<div style={{marginTop:"140px"}} ><Entertainment /></div>} />
       <Route path="/service" element={<Service/>}/>
       <Route path='/Addcart' element={<div style={{marginTop:"60px"}}><Addcart/></div>}/>
-
-     <Route path='/termcondition' element={<div style={{marginTop:"75px"}}><Termscondition/></div>}/>
+      <Route path='/termcondition' element={<div style={{marginTop:"75px"}}><Termscondition/></div>}/>
       <Route path='/policy' element={<div style={{marginTop:"75px"}}><Policy/></div>}/>
       <Route path='/contact' element={<div style={{marginTop:"70px"}}><Contact/></div>}/>
       <Route path='/about' element={<div style={{marginTop:"65px"}}><About/></div>}/>
@@ -155,6 +153,7 @@ function App(){
       <Route path='/upload' element={<div style={{marginTop:"150px"}}><Myvideo/></div>}/>
 
   
+
       <Route path='*' element={<h2>404 Found page</h2>}/>
     </Routes>
     </div>

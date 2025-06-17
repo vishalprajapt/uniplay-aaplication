@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';  // Import react-toastify
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS
+import 'react-toastify/dist/ReactToastify.css'; 
 import './Model.css';
 
 function Model({ data ,type}) {
@@ -10,6 +10,7 @@ function Model({ data ,type}) {
       if(type === 'error') {
         toast.error(data, {
           autoClose: 1200,
+          className:"toast-custom",
           style: {
             fontSize: '20px',
             background: 'white', 

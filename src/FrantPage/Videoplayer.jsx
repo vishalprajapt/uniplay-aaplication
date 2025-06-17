@@ -23,13 +23,16 @@ import "./Videoplayer.css"
 const VideoPlayer = ({ videoUrl, posterurl,videoid,videotitle}) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
+  const [isFullscreenVideo, setIsFullscreenVideo] = useState(false);
+
   const Selector=useSelector(state=>state.AddBuyall.Commentcart)
     const Bookmartlist=useSelector(state=>state.AddBuyall.Bookmartcart)
     const Bookmartlistid=useSelector(state=>state.AddBuyall.Bookidcart)
     console.log("Bookmartlist",Bookmartlist)
   const Dispatch=useDispatch()
   
-console.log("Selector",Selector);
+  
+console.log("videoUrl",videoUrl);
 
   useEffect(() => {
     if (!playerRef.current) {
@@ -69,6 +72,13 @@ console.log("Selector",Selector);
       playerRef.current.src({ src: videoUrl, type: "video/youtube" });
     }
 
+       playerRef.current.on("fullscreenchange", () => {
+      const isFull = playerRef.current.isFullscreen(); 
+      setIsFullscreenVideo(isFull); 
+    });
+
+
+
     return () => {
       if (playerRef.current) {
         playerRef.current.dispose();
@@ -77,31 +87,8 @@ console.log("Selector",Selector);
     };
   }, [videoUrl]);
 
-  
-  
-  
-  const seekBy = (seconds) => {
-    if (playerRef.current) {
-      let currentTime = playerRef.current.currentTime();
-      let duration = playerRef.current.duration();
-      let newTime = currentTime + seconds;
-
-      if (newTime < 0) newTime = 0;
-      if (newTime > duration) newTime = duration;
-
-      playerRef.current.currentTime(newTime);
-    }      
-    }; 
 
     
-    
-  const handleLeftDoubleClick = () => {
-    seekBy(-10); 
-  };
-
-  const handleRightDoubleClick = () => {
-    seekBy(10); 
-  };
  
 
   const [showBookmart, setshowBookmart]=useState(false)
@@ -186,6 +173,23 @@ console.log("Selector",Selector);
         className="video-js vjs-big-play-centered"
         playsInline
       />
+      {isFullscreenVideo && (
+  <div style={{
+    position: "fixed",
+   bottom:"200px",
+  left:"30px",
+    backgroundColor: "rgba(0,0,0,0.6)",
+    color: "white",
+    padding: "10px 20px",
+    borderRadius: "8px",
+    zIndex: 9999,
+    fontSize: "16px"
+  }}>
+    <p style={{ margin: 0 }}> This is your fullscreen overlay</p>
+    <p style={{ margin: 0 }}>Video Title: {videotitle}</p>
+  </div>
+)}
+
     </div>
   </div>
 
@@ -279,7 +283,7 @@ console.log("Selector",Selector);
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 999
+    zIndex: 999,
   }}>
     <div style={{
       backgroundColor: "#fff",
@@ -293,7 +297,7 @@ console.log("Selector",Selector);
       animation: "fadeIn 0.3s ease"
     }}>
 
-      {/* Close button */}
+      {/* Close button/ */}
       <span
         onClick={() => {
           setshowBookmart(false);

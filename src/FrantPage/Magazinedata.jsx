@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { LuGift } from "react-icons/lu";
 import { BiSolidOffer } from "react-icons/bi";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Magazine.css'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { magazinedata ,datapdf} from '../Redux/Action';
 import { Addtocartdata } from '../Redux/Action';
 import LoginModal from './Loginmodel';
+import Breadcrumbs from './Breadcrumb';
 
 
 function Magazinedata() {
@@ -76,8 +77,18 @@ if(localemail){
  
   return (
     <>
+
+   
    {showloginmodel &&  <LoginModal  datafalse={modelhandel}/>}
+   <Breadcrumbs
+   paths={[
+           { label: "Home", link: "/" },
+         { label: "Magazine", link: "/magazine" },
+          { label: "MagazineData" },
+   ]}
+   />
     <div className="container py-2">
+
         <button onClick={()=>navigate(localdata)} style={{border:'none', outline:"none", background:"none",marginBottom:"10px"}} ><FaArrowLeftLong style={{fontSize:"20px"}} /></button>
       {ViewSelector.map((item, index) => (
         <div className="row shadow rounded-4 p-4 mb-5 bg-white" key={index}>

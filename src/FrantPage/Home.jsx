@@ -124,7 +124,7 @@ function Home(props) {
         expanded:false,
         subcategory:"Top 10",
         price:"199",
-        link:"https://youtu.be/x8RKFRNCzcg?si=EGauwj1YYh_DvEdz",
+        link:"https://www.youtube.com/embed/Drk0gHwMr8I?si=PUcMUL-6M5kPLzUd&amp;start=6",
       },
     {
         id:8,
@@ -718,6 +718,9 @@ const handleMouseLeave = (index) => {
   return (
 
     <>
+    <div  style={{width:"50px", height:"50px", position :"fixed", bottom:"30px", zIndex:"1000", right:"50px"}}>
+    <Link   to="https://wa.me/917505200576?text=Hello%20Uniplay" target='_blank'><img src="/img/WhatsApp.svg" alt="whatsappimg" /></Link>
+    </div>
      {/* <Logo/> */}
       {showLogin &&
   <Suspense>

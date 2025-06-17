@@ -7,7 +7,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { useLocation } from 'react-router-dom'
+import { useLocation,Link } from 'react-router-dom'
 const LoginModal=lazy(()=>import("./Loginmodel"))
 import { BuycardVideos ,YouTubeVideo,Viewcarddata,Addtocartdata} from '../Redux/Action'
 import { useDispatch,useSelector } from 'react-redux'
@@ -468,7 +468,7 @@ useEffect(() => {
 
   
 
-                     console.log("setPrintcards",Printcards);
+                    //  console.log("setPrintcards",Printcards);
 
    
         
@@ -477,7 +477,9 @@ useEffect(() => {
 
   return (
    <>
-   
+    <div  style={{width:"50px", height:"50px", position :"fixed", bottom:"30px", zIndex:"1000", right:"30px"}}>
+       <Link   to="https://wa.me/917505200576?text=Hello%20Uniplay" target='_blank'><img src="/img/WhatsApp.svg" alt="whatsappimg" /></Link>
+       </div>
      
    {rightpop && <Model data={alertMessage}  type={alertType}/>}
    
@@ -528,7 +530,8 @@ useEffect(() => {
     //  {console.log("filtercards.subtitile",item.subtitle)}
    
     return (
-      <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
+      
+      <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" key={item.id}>
         <div className=" rounded" style={{ width: "95%", height: "auto", paddingBottom: "10px", boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", cursor: "pointer" }}>
           <img
             src={item.pic}
@@ -648,6 +651,7 @@ useEffect(() => {
                     <SwiperSlide key={item.id}>
                     <div
                       className="card"
+                      key={item.id}
                       style={{
                         width: "95%",
                         height: "auto",
@@ -679,7 +683,7 @@ useEffect(() => {
                          <span
                            style={{ color: "black", cursor: "pointer",fontWeight:"bold" }}
                            onClick={() => toggleReadMore(item)}
-                         >
+                         >            
                            {item.expanded ? "Read less" : "Read more"}
                          </span>
                        </p>
@@ -735,24 +739,18 @@ useEffect(() => {
                     </div>
                   </SwiperSlide>
                   )
-                }
-                 
+                }   
                 )}
               </Swiper>
               <div
             className={`swiper-button-next ${isHovered ? "show-button" : "hide-button"}`} >
             </div>
-      
             <div
             className={`swiper-button-prev ${isHovered && activeIndex > 0 ? "show-button" : "hide-button"}`}  >
             </div>
-      
             </div>
            )}
-      
-      
-       
-            
+         
       {(selectedSubcategory === "Shows" || selectedSubcategory === "all" || selectedSubcategory === "") && (
             <div className="row" style={{margin:"50px 0px"}}>
                          <h3  style={{fontFamily:"Algerian"}}>Shows</h3>
@@ -762,7 +760,7 @@ useEffect(() => {
                           //  {console.log("filtercards.subtitile",item.subtitle)}
       
                           return (
-                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" key={item.id}>
                               <div className=" rounded" style={{ width: "95%", height: "auto", paddingBottom: "10px", boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", cursor: "pointer" }}>
                                 <img
                                   src={item.pic}
@@ -855,7 +853,7 @@ useEffect(() => {
                           //  {console.log("filtercards.subtitile",item.subtitle)}
       
                           return (
-                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" key={item.id}>
                               <div
                                 className=" rounded" style={{ width: "95%", height: "auto", paddingBottom: "10px", boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", cursor: "pointer" }}>
                                 <img

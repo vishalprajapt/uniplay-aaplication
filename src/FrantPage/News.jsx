@@ -7,7 +7,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import Navbar from './Navbar'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 const LoginModal=lazy(()=>import("./Loginmodel"))
 import { BuycardVideos ,YouTubeVideo,Viewcarddata,Addtocartdata} from '../Redux/Action'
 import { useDispatch,useSelector } from 'react-redux'
@@ -491,6 +491,9 @@ console.log("musubcategoryarry",musubcategoryarry);
 
   return (
    <>
+    <div  style={{width:"50px", height:"50px", position :"fixed", bottom:"30px", zIndex:"1000", right:"30px"}}>
+       <Link   to="https://www.whatsapp.com/" target='_blank'><img src="/img/WhatsApp.svg" alt="whatsappimg" /></Link>
+       </div>
    
    {rightpop && <Model data={alertMessage} type={alertType} />}
      {showLogin &&

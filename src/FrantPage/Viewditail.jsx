@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { YouTubeVideo,datapdf } from '../Redux/Action';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
-function Viewditail() {
+function Viewditail() {                                                         
   const navigate = useNavigate();
   const ViewSelector = useSelector(state => state.ViewCheck.viewcontent);
   const Dispatch = useDispatch();
@@ -15,10 +15,17 @@ function Viewditail() {
     navigate("/Watch");
   };
 
-   const handalepdfdata=(item)=>{
-      Dispatch(datapdf(item)) 
-      navigate("/watch-datapdf")
-    }
+      const handalepdfdata=(item)=>{
+    // Dispatch(datapdf(item)) 
+    // navigate("/watch-datapdf")     
+    if (item.pdfdata) {
+    const link = document.createElement("a");
+    link.href = item.pdfdata;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.click();
+      }
+  }
   
 
   return (
@@ -32,10 +39,10 @@ function Viewditail() {
           <FaLongArrowAltLeft />
         </button>
 
-        {Array.isArray(ViewSelector) && ViewSelector.length > 0 ? (
+        {Array.isArray(ViewSelector) && ViewSelector.length > 0?( 
           ViewSelector.map((item, index) => (
             <div
-              key={index}
+              key={index} 
               className="row shadow-sm mb-4 bg-white rounded align-items-center p-4"
               style={{ border: "1px solid #e0e0e0", maxWidth: "900px", margin: "0 auto" }}
             >

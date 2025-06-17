@@ -1,11 +1,12 @@
 import React,{useState, useCallback, useEffect} from 'react';
 import { animated, useSprings } from '@react-spring/web';
 import './Magazine.css'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate ,Link} from 'react-router-dom';
 import { Viewcarddata } from '../Redux/Action';
 import { useDispatch } from 'react-redux';
 import Serachbar from './Serachbar';
 import { FaSearch } from "react-icons/fa";
+import Breadcrumbs from './Breadcrumb';
 
 
    
@@ -191,6 +192,13 @@ function Mazagine() {
    const [ViewMagzine, setViewMagzine]=useState(null)
 
   return (
+
+    <>
+    
+      <div  style={{width:"50px", height:"50px", position :"fixed", bottom:"30px", zIndex:"1000", right:"30px"}}>
+               <Link   to="https://wa.me/917505200576?text=Hello%20Uniplay" target='_blank'><img src="/img/WhatsApp.svg" alt="whatsappimg" /></Link>
+               </div>
+ 
     <div className='container ' style={{padding:"50px 0px"}}>
 
 
@@ -256,6 +264,12 @@ function Mazagine() {
 )}
 
   <div className="row">
+    <div>
+   <Breadcrumbs paths={[
+       { label: "Home", link: "/" },
+         { label: "Magazine" },
+   ]}/>
+    </div>
       {springs.map((springStyle, index) => {
         const item = filtercards[index];
         return (
@@ -312,6 +326,8 @@ function Mazagine() {
       })}
     </div>
     </div>
+     </>
+
   );
 }
 

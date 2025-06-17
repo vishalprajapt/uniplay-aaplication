@@ -12,7 +12,7 @@ import { magazineid } from '../Redux/Action';
 import { Addtocartdata } from '../Redux/Action';
 import { myorderdata } from '../Redux/Action';
 import Mapvalue from './Map2';
-
+import Breadcrumbs from './Breadcrumb';
 
 
 
@@ -363,7 +363,14 @@ useEffect(()=>{
     <h1>Thank You!</h1>
     <p>Your purchase was successful...</p>
   </div>}
-
+ <Breadcrumbs
+   paths={[
+           { label: "Home", link: "/" },
+         { label: "Magazine", link: "/magazine" },
+          { label: "MagazineData", link: "/magazine-data" },
+           { label: "Buy" },
+   ]}
+ />
 
 {Selectormagazine.status==="offline" ?
 <div className={thankYouVisible ? "blur-content" : ""}>
@@ -405,9 +412,9 @@ useEffect(()=>{
       </select>
            </div>
            <div className="col-md-6">
-          
               <label><b>District:</b></label><br />
-      <select
+
+      <select 
         value={district}
         onChange={(e) => setDistrict(e.target.value)}
         disabled={!stateValue} // state choose na kiya ho to disable karein
@@ -435,6 +442,7 @@ useEffect(()=>{
            <input type="text" value={landmark} style={{fontSize:"13px"}} className="form-control" placeholder="Enter Landmark" onChange={(e) => setLandmark(e.target.value)} />
          </div>
           <div className="mb-3">
+             
   <label><b>Select a Location:</b></label>
   <div className="d-flex gap-2">
     <input

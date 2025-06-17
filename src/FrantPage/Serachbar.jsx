@@ -25,7 +25,7 @@ function Serachbar({  onterm }) {
       if (document.activeElement !== focusdata.current && inputvalue === "") {
         setsearchbar(false);
       }
-    }, 100); // delay ensures blur events complete
+    }, 100); 
   };
   
     return (
@@ -56,7 +56,7 @@ function Serachbar({  onterm }) {
            value={inputvalue}
             onChange={(e) => {
                 setinputvalue(e.target.value);
-              debouncedSearch(e);
+             
             }}
              onFocus={() => setsearchbar(true)}
           onBlur={() => {
