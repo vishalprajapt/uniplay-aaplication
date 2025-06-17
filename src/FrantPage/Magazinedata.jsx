@@ -8,7 +8,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { magazinedata ,datapdf} from '../Redux/Action';
 import { Addtocartdata } from '../Redux/Action';
 import LoginModal from './Loginmodel';
-import Breadcrumbs from './Breadcrumb';
+import Breadcrumb from './Breadcrumb';
 
 
 function Magazinedata() {
@@ -80,7 +80,7 @@ if(localemail){
 
    
    {showloginmodel &&  <LoginModal  datafalse={modelhandel}/>}
-   <Breadcrumbs
+   <Breadcrumb
    paths={[
            { label: "Home", link: "/" },
          { label: "Magazine", link: "/magazine" },

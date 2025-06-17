@@ -1,7 +1,8 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './breadcrumb.css'
+import './Breadcrumb.css'
+
 
 function Breadcrumb({paths}) {
   return (
@@ -13,7 +14,7 @@ function Breadcrumb({paths}) {
             <>
             <li className={`breadcrumb-item ${index === paths.length - 1 ? "active" : ""}`}
          aria-current={index === paths.length - 1 ? "page" : undefined} >
-          
+
           {index === paths.length - 1 ? (
   item.label
 ) : (

@@ -12,7 +12,7 @@ import { magazineid } from '../Redux/Action';
 import { Addtocartdata } from '../Redux/Action';
 import { myorderdata } from '../Redux/Action';
 import Mapvalue from './Map2';
-import Breadcrumbs from './Breadcrumb';
+import Breadcrumb from './Breadcrumb';
 
 
 
@@ -363,7 +363,7 @@ useEffect(()=>{
     <h1>Thank You!</h1>
     <p>Your purchase was successful...</p>
   </div>}
- <Breadcrumbs
+ <Breadcrumb
    paths={[
            { label: "Home", link: "/" },
          { label: "Magazine", link: "/magazine" },

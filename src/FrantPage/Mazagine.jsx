@@ -6,7 +6,7 @@ import { Viewcarddata } from '../Redux/Action';
 import { useDispatch } from 'react-redux';
 import Serachbar from './Serachbar';
 import { FaSearch } from "react-icons/fa";
-import Breadcrumbs from './Breadcrumb';
+import Breadcrumb from './Breadcrumb';
 
 
    
@@ -265,7 +265,7 @@ function Mazagine() {
 
   <div className="row">
     <div>
-   <Breadcrumbs paths={[
+   <Breadcrumb paths={[
        { label: "Home", link: "/" },
          { label: "Magazine" },
    ]}/>
