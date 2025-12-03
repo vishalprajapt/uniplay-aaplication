@@ -3,12 +3,14 @@ import { useNavigate,useLocation,useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Purchase,Addressdata,LogoutAdders,Editaddressdata,Idstore,Removecartdata,Viewcarddata } from '../Redux/Action';
 import Model from './Model';
+// import axios 
 import './Buy.css';
 import { HiArrowLongLeft } from "react-icons/hi2";
 import { MdAdd } from "react-icons/md";
-
+import {v4 as uuidv4} from 'uuid'
+ 
 import axios from "axios"
-import {load} from '@cashfreepayments/cashfree-js'
+// import {load} from '@cashfreepayments/cashfree-js'
 // import { cashfree } from './util'
 import { myorderdata } from '../Redux/Action';
 
@@ -26,13 +28,13 @@ function Address() {
   const [isChecked, setIsChecked] = useState(false);
   const locationdata=useLocation();
   const [stateValue, setStateValue] = useState('');
-const [district, setDistrict] = useState('');
-const [Apply ,setapply]=useState('');
-const [Applycheck, setApplycheck]=useState(false)
-const  [discountprice, setdiscountprice]=useState(0)
-const [loading, setloading]=useState(false);
-const [discountitem, setdiscountitem]=useState(false)
- const intivalue=(100);
+  const [district, setDistrict] = useState('');
+  const [Apply ,setapply]=useState('');
+  const [Applycheck, setApplycheck]=useState(false)
+  const  [discountprice, setdiscountprice]=useState(0)
+  const [loading, setloading]=useState(false);
+  const [discountitem, setdiscountitem]=useState(false)
+  const intivalue=(100);
   const delivery=(100);
   const Cupan=[
     {id:1, name:"discount", price:20},
@@ -46,21 +48,17 @@ const [discountitem, setdiscountitem]=useState(false)
   const [alertType, setAlertType]=useState("")
   
   console.log("selectedPrice   selectedPrice",selectedPrice.length);
-  
   let singalitem=null;
   let TotalPrice=0;
-
   if (Array.isArray(selectedPrice)) {
-    if (selectedPrice.length === 1) {
-    
+    if (selectedPrice.length === 1){
       singalitem = selectedPrice[0];
       TotalPrice = Number(singalitem.price);
       
     } else if (selectedPrice.length > 1){
-    
       const buyfilter = selectedPrice.map((item) => Number(item.price));
       TotalPrice = buyfilter.reduce((acc, price) => acc + price, 0);
-    }
+    }              
   }
   console.log("selectedPrice1",selectedPrice.length);
   console.log("singalitem",singalitem);
@@ -73,7 +71,7 @@ const [discountitem, setdiscountitem]=useState(false)
   
   const buyfilter=SelectbuyAll.map((item)=>item.price)
   const totalPrice = buyfilter.reduce((acc, price) => acc + Number(price), 0);
-
+     
  
   // console.log("buyfilter",buyfilter);
   // console.log("SelectbuyAll",SelectbuyAll);
@@ -83,12 +81,61 @@ const [discountitem, setdiscountitem]=useState(false)
   const [radio, setradio]=useState(false);
   const [changepop, setchangepop]=useState(false);
 
+//  useEffect(() => {
+//     const script = document.createElement("script");
+//     script.src = "https://sdk.cashfree.com/js/ui/2.0.0/cashfree.sandbox.js"; // prod for live
+//     script.async = true;
+//     document.body.appendChild(script);
+//   }, []);
 
-  
-  
- // console.log("setSelectedAddressIndex",selectedAddressIndex);
+  const handleClick = async () => {
+    console.log("hi")
+    try {
+      // Step 1: Create order from backend
+      const { data } = await axios.post("http://localhost:5000/create-order", {
+        orderId: "order_" + Date.now(),
+        orderAmount: 5, // INR
+        customerName: name,
+        customerEmail:"sunnyprajapati9761@gmail.com",
+        customerPhone: "7088663075"
+      })
+       if(data?.stuts==true){
+           dispatch(myorderdata(selectedPrice))
+      setThankYouVisible(true)
+       
+      dispatch(Purchase(selectedPrice.map((item)=>item.id)));
+      dispatch(Viewcarddata(selectedPrice))
 
-        
+      setTimeout(() => {
+        dispatch(Removecartdata(selectedPrice.map((item)=>item.id)));
+      }, 1000);
+     
+    //  setTimeout(() => {
+    //       setShowPopup(true);
+    //    setAlertType("success")
+    //          setPopupMessage('Successfully purchse video');
+    
+    //   navigate("/ViewData-page");
+     
+    //  }, 3000);
+     
+      return;
+       }
+      console.log("datad",data)
+      // Step 2: Call Cashfree checkout
+      const cashfree = new window.Cashfree({ mode: "sandbox" });
+      cashfree.checkout({
+        paymentSessionId: data.payment_session_id,
+        redirectTarget: "_self" // or "_blank" for new tab
+      });
+    } catch (error) {
+      console.log("Payment error:", error);
+    }}
+  
+
+
+
+
   
 
   const handleNumberInput = (e) => {
@@ -106,12 +153,15 @@ const [discountitem, setdiscountitem]=useState(false)
     }
   }
 
+  console.log("Numberlength",number.length);
+  
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name) setPopupMessage('Enter name'), setAlertType("error");
     else if (!number) setPopupMessage('Enter Number'),  setAlertType("error");
+     else if (number.length<10) setPopupMessage('Invaild  mobile number'),  setAlertType("error");
     else if (stateValue==="") setPopupMessage('Please select State'), setAlertType("error");
     else if (district==="") setPopupMessage('Please select District'), setAlertType("error");
     else if (!pincode) setPopupMessage('Enter Pincode'), setAlertType("error");
@@ -130,7 +180,7 @@ const [discountitem, setdiscountitem]=useState(false)
       };
      
    
-     // setSelectedAddressIndex(SelectAddress.length)
+    //  setSelectedAddressIndex(SelectAddress.length)
      
       if (isEditing) {
         dispatch(Editaddressdata(updatedAddress, editIndex));
@@ -167,28 +217,28 @@ const [discountitem, setdiscountitem]=useState(false)
        setAlertType("error")
       setPopupMessage('Please agree checkout');
     }else{    
-
-    // handleClick()
-      dispatch(myorderdata(selectedPrice))
-      setThankYouVisible(true)
        
-      dispatch(Purchase(selectedPrice.map((item)=>item.id)));
-      dispatch(Viewcarddata(selectedPrice))
+       handleClick()
+    //   dispatch(myorderdata(selectedPrice))
+    //   setThankYouVisible(true)
+       
+    //   dispatch(Purchase(selectedPrice.map((item)=>item.id)));
+    //   dispatch(Viewcarddata(selectedPrice))
 
-      setTimeout(() => {
-        dispatch(Removecartdata(selectedPrice.map((item)=>item.id)));
-      }, 1000);
+    //   setTimeout(() => {
+    //     dispatch(Removecartdata(selectedPrice.map((item)=>item.id)));
+    //   }, 1000);
      
-     setTimeout(() => {
-          setShowPopup(true);
-       setAlertType("success")
-             setPopupMessage('Successfully purchse video');
+    //  setTimeout(() => {
+    //       setShowPopup(true);
+    //    setAlertType("success")
+    //          setPopupMessage('Successfully purchse video');
     
-      navigate("/ViewData-page");
+    //   navigate("/ViewData-page");
      
-     }, 3000);
+    //  }, 3000);
      
-      return;
+    //   return;
     }
   }
 
@@ -218,7 +268,7 @@ const [discountitem, setdiscountitem]=useState(false)
     setLandmark("");
     setDistrict("");
     setStateValue("");
-    setIsEditing(false);
+    // setIsEditing(false);
     setEditIndex(null);
   }
 
@@ -230,8 +280,7 @@ useEffect(()=>{
  
 
   const handleApply=()=>{  
-    
-    const matched=Cupan.find((item)=>item.name.toLowerCase()===Apply.toLowerCase())
+    const matched=Cupan.find((item)=>item.name.toLowerCase()===Apply.toLowerCase())  
     if (matched) {
       setShowPopup(true)
        setAlertType("success")
@@ -294,15 +343,14 @@ useEffect(()=>{
   "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer"],
   "Haryana": ["Gurgaon", "Faridabad", "Panipat", "Sonipat", "Karnal"],
 };
-     const districts = stateValue ? stateDistrictData[stateValue] : [];
 
+ const districts = stateValue ? stateDistrictData[stateValue] : [];
   // State change handler: state set karo aur district reset kar do
   const handleStateChange = (e) => {
     setStateValue(e.target.value);
     setDistrict(''); // jab state change ho to district empty kar dena
   };
-
-
+  
   return (
     <>
   

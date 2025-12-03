@@ -13,10 +13,19 @@
   </head>
   <body>
     <div id="root"></div>
-<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+
+<!-- Add in <head> or before </body> -->
+<!-- <script src="https://sdk.cashfree.com/js/ui/2.0.0/dropin.min.js"></script> -->
+
+
+   <!-- ✅ Proper order & defer -->
+      <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+<!-- <script  src="https://sdk.cashfree.com/js/ui/2.0.0/dropin.min.js"></script> -->
+<script type="module" src="/src/main.jsx"></script>
+
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- <script type="module" src="/src/main.jsx"></script> -->
   </body>
 </html>

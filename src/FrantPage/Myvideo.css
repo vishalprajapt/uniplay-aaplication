@@ -1,0 +1,15 @@
+
+.mymanidiv{
+    display: flex;
+    gap: 50px;
+
+    padding:50px;
+    align-items: center;
+
+}
+
+.rightdiv{
+    padding: 20px;
+    width: 50%;
+    border: 1px dotted;
+}

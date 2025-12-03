@@ -300,6 +300,7 @@ function Entertainment() {
       },
   
     ])
+    
     const musubcategoryarry= [
       ...new Set(cards.slice(0, 16).map((item) => item.subcategory))
     ]
@@ -433,9 +434,9 @@ function Entertainment() {
                                  
                                              
                        const handleFilterChange = (selected) => {
-  setSelectedSubcategory(selected);
+       setSelectedSubcategory(selected);
 
-  const filtered = selected === "all"
+  const filtered= selected === "all"
     ? fourCards
     : fourCards.filter(card =>
         card.subcategory?.trim().toLowerCase() === selected.toLowerCase()

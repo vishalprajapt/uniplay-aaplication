@@ -492,7 +492,7 @@ console.log("musubcategoryarry",musubcategoryarry);
   return (
    <>
     <div  style={{width:"50px", height:"50px", position :"fixed", bottom:"30px", zIndex:"1000", right:"30px"}}>
-       <Link   to="https://www.whatsapp.com/" target='_blank'><img src="/img/WhatsApp.svg" alt="whatsappimg" /></Link>
+       <Link   to="https://wa.me/917505200576?text=Hello%20Uniplay" target='_blank'><img src="/img/WhatsApp.svg" alt="whatsappimg" /></Link>
        </div>
    
    {rightpop && <Model data={alertMessage} type={alertType} />}

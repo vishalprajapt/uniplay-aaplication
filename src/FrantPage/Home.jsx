@@ -344,7 +344,7 @@ function Home(props) {
    
 
 
-
+// console.log("Amountdata",Amountdata.keyid)
 
   useEffect(() => {
     setTimeout(() => {
@@ -630,7 +630,7 @@ console.log("Flattened IDs:", flatIDs);
       const filtered = getRepeatedCards().filter((item) =>
         item.subtitle && item.subtitle.toLowerCase().includes(searchValue.toLowerCase())
       );
-      console.log("Filtered Cards: ", filtered);
+      // console.log("Filtered Cards: ", filtered);
       setFinalcards(filtered);
     }
   };

@@ -522,8 +522,8 @@ function Freedemo() {
                      >
                        <button
                          className="btn btn-outline-danger btn-sm m-2"
-                         type="button"
-                         data-bs-toggle="modal"
+                         type="button"                   
+                         data-bs-toggle="modal"   
                          data-bs-target="#staticBackdrop"
                          onClick={() => Openmodel(item)}
                        >

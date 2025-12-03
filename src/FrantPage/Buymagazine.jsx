@@ -226,7 +226,7 @@ const [discountitem, setdiscountitem]=useState(false)
     setLandmark("");
     setDistrict("");
     setStateValue("");
-    setIsEditing(false);
+    // setIsEditing(false);
     setEditIndex(null);
     setselectdata('')
   }

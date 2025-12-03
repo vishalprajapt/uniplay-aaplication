@@ -20,6 +20,7 @@ import "./Component.css";
 import { FaSearch } from "react-icons/fa";
 import Filtercompoent from './Filtercompoent'
 import Serachbar from './Serachbar'
+import Draggable from 'react-draggable'
 
 function Games() {
      const swiperRef = useRef(null);
@@ -524,6 +525,7 @@ function Games() {
    //  {console.log("filtercards.subtitile",item.subtitle)}
   
    return (
+    
      <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
        <div className=" rounded" style={{ width: "95%", height: "auto", paddingBottom: "10px", boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", cursor: "pointer" }}>
          <img

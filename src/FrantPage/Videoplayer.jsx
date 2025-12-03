@@ -13,28 +13,28 @@ import { BiPlay } from "react-icons/bi";
 import { CgPlayPause } from "react-icons/cg";
 import { MdDelete } from "react-icons/md";
 import "./Videoplayer.css"
-
 import Fullscreen from "./Fullscreen";
-
-
-{/*  */}
-{/* <CgPlayPause /> */}
+import Model from "./Model";
 
 
 
-const VideoPlayer = ({ videoUrl, posterurl,videoid,videotitle}) => {
+
+const VideoPlayer = ({ videoUrl, posterurl,videoid,videotitle, Handlefullscreen}) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
   const [isFullscreenVideo, setIsFullscreenVideo] = useState(false);
-
   const Selector=useSelector(state=>state.AddBuyall.Commentcart)
     const Bookmartlist=useSelector(state=>state.AddBuyall.Bookmartcart)
     const Bookmartlistid=useSelector(state=>state.AddBuyall.Bookidcart)
-    console.log("Bookmartlist",Bookmartlist)
+    const [alertmassage, setalertmassage]=useState('')
+    const [alertType, setalertType]=useState('')
+    const [showpop, setshowpop]=useState(false)
+
+    // console.log("Bookmartlist",Bookmartlist)
   const Dispatch=useDispatch()
   
   
-console.log("videoUrl",videoUrl);
+// console.log("videoUrl",videoUrl);
 
   useEffect(() => {
     if (!playerRef.current) {
@@ -108,12 +108,25 @@ console.log("videoUrl",videoUrl);
 
     const HandleSubmit=(e)=>{
       e.preventDefault(e)
-          const currentTimedata = formatTime(playerRef.current.currentTime());
-         console.log("currentTimedata",currentTimedata)
+    
+      if(bookmarkNote.length===0){
+
+        setshowpop(true)
+        setalertType("error")
+        setalertmassage("Please enter a bookmart")
+      }else {
+        setshowpop(true)
+        setalertType("success")
+        setalertmassage("Successfully add bookmart")
+        const currentTimedata = formatTime(playerRef.current.currentTime());
+        //  console.log("currentTimedata",currentTimedata)
          Dispatch(Bookmart({Time:currentTimedata, note:bookmarkNote, id:videoid}))
           setshowBookmart(!showBookmart)
           setbookmarkNote('')
            playerRef.current.play()
+      }
+
+          
           // Dispatch(Bookid(Bookmartlist.length));
     }
 
@@ -133,11 +146,11 @@ console.log("videoUrl",videoUrl);
 
       const second=convertTimeToSeconds(item)
 
-      console.log("data called",item);
+      // console.log("data called",item);
       
        playerRef.current.currentTime(second);
   
-     
+      
       
     }
 
@@ -149,26 +162,26 @@ console.log("videoUrl",videoUrl);
     }
 
 
+  useEffect(() => {
+    if (showpop) {
+      const timer = setTimeout(() => {
+        setshowpop(false);
+      }, 1500);
 
+      return () => clearTimeout(timer); // cleanup
+    }
+  }, [showpop]);
+
+
+ 
   
 
   return (
 <>
-<div style={{
-  display: "flex",
-
-  gap: "20px",
-  justifyContent: "center",
-  alignItems: "flex-start",
-  marginTop: "20px"
-}}>
-  {/* Video Player Section */}
-  <div style={{
-    position: "relative",
-    maxWidth: "800px",
-    width: "100%",
-  
-  }}>
+{showpop && <Model  data={alertmassage}  type={alertType}/>}
+<div className="video-bookmark-wrapper">
+  {/* Video Section */}
+  <div className="video-section">
     <div data-vjs-player>
       <video
         ref={videoRef}
@@ -176,65 +189,59 @@ console.log("videoUrl",videoUrl);
         playsInline
       />
       {isFullscreenVideo && (
-        <Fullscreen videotitle={videotitle} />
+        <Fullscreen videotitle={videotitle}  Handlefullscreen={Handlefullscreen} />
       )}
-
     </div>
   </div>
 
-  {/* Bookmark Panel */}
- <div className="Mybookpannel">
-  <div className="Mybookscrollbox">
-    <h3  className="Titlebookmart">Bookmarks</h3>
+  {/* Bookmark Section */}
+  <div className="Mybookpannel">
+    <div className="Mybookscrollbox">
+      <h3 className="Titlebookmart">Bookmarks</h3>
+      {Bookmartlist?.filter(item => item.id === videoid).length > 0 ? (
+        Bookmartlist
+          .filter(item => item.id === videoid)
+          .map((item, index) => (
+            <div key={index} className="bookmark-card">
+              <div
+                className="bookmark-item-text"
+                onClick={() => {
+                  replacetimedata(item.Time);
+                  Dispatch(Bookid(index));
+                }}
+              >
+                <p>{item.Time}</p>
+                <span><BiPlay style={{ fontSize: '20px' }} />{item.note}</span>
+              </div>
+              <div
+                onClick={() => Handleremovedata(index)}
+                className="delete-icon"
+              >
+                <MdDelete />
+              </div>
+            </div>
+          ))
+      ) : (
+        <p className="mYnoYet">No bookmarks yet</p>
+      )}
+    </div>
 
-    {Bookmartlist?.filter(item => item.id === videoid).length > 0 ? (
-      Bookmartlist.filter(item => item.id === videoid).map((item, index) => (
-       <div key={index} className="bookmark-card">
-  <div
-    className="bookmark-item-text"
-    onClick={() => {
-      replacetimedata(item.Time);
-      Dispatch(Bookid(index));
-    }}
-  >
-    <p>{item.Time}</p>
-    <span>{item.note}</span>
-  </div>
-
-  <div
-    onClick={() => Handleremovedata(index)}
-    style={{
-      marginLeft: "10px",
-      color: "#d9534f",
-      cursor: "pointer",
-      fontSize: "18px"
-    }}
-  >
-    <MdDelete />
+    <button
+      onClick={() => {
+        if (playerRef.current) {
+          playerRef.current.pause();
+          setbookmarktime(formatTime(playerRef.current.currentTime()));
+        }
+        setshowBookmart(true);
+      }}
+      className="Mybookpannelbutton"
+    >
+      + Add Bookmark
+    </button>
   </div>
 </div>
 
-      ))
-    ) : (
-      <p  className="mYnoYet">No bookmarks yet</p>
-    )}
-  </div>
 
-  <button
-    onClick={() => {
-      if (playerRef.current) {
-        playerRef.current.pause();
-        setbookmarktime(formatTime(playerRef.current.currentTime()));
-      }
-      setshowBookmart(true);
-    }}
-    className="Mybookpannelbutton"
-  >
-    + Add Bookmark
-  </button>
-</div>
-
-</div>
 
  <p style={{fontSize:"20px",marginTop:"10px",marginLeft:"10px"}}>{videotitle}</p>
  <CommentBox  sendid={videoid}/>

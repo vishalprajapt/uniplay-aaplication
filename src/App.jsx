@@ -3,7 +3,7 @@ import React,{lazy, Suspense, useEffect, useState} from 'react'
 
 const Home = lazy(() =>
   new Promise(resolve => {
-    setTimeout(() => resolve(import('./FrantPage/Home')), 4000); // 1.5 second delay
+    setTimeout(() => resolve(import('./FrantPage/Home')), 4000); 
   })
 );
 
@@ -151,8 +151,6 @@ function App(){
       <Route path='/watch-datapdf' element={<Watchdatapdf/>}/>
       <Route  path='/my-order' element={<div style={{marginTop:"80px"}}><Myorder/></div>}/>
       <Route path='/upload' element={<div style={{marginTop:"150px"}}><Myvideo/></div>}/>
-
-  
 
       <Route path='*' element={<h2>404 Found page</h2>}/>
     </Routes>

@@ -26,7 +26,7 @@ function Navbar() {
           <NavItem to="/entertainment" label="Entertainment" />
           <NavItem to="/Free-demo" label="Free Video" />
           <NavItem to="/magazine" label="Magazine" />
-          <NavItem to="/upload" label="My Video"/> 
+          {/* <NavItem to="/upload" label="My Video"/>  */}
            
            
           
