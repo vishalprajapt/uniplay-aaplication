@@ -47,7 +47,7 @@ function Address() {
   const selectedPrice = useSelector(state => state.CardPrice.Pricecards);
   const [alertType, setAlertType]=useState("")
   
-  console.log("selectedPrice   selectedPrice",selectedPrice.length);
+  // console.log("selectedPrice   selectedPrice",selectedPrice.length);
   let singalitem=null;
   let TotalPrice=0;
   if (Array.isArray(selectedPrice)) {
@@ -60,8 +60,6 @@ function Address() {
       TotalPrice = buyfilter.reduce((acc, price) => acc + price, 0);
     }              
   }
-  console.log("selectedPrice1",selectedPrice.length);
-  console.log("singalitem",singalitem);
   //console.log("listitem",listitem);
   const SelectAddress=useSelector(state=>state.CostumerAdd.Addressdetail)
   const SelectId=useSelector(state=>state.AddID.Cartid)
@@ -88,16 +86,24 @@ function Address() {
 //     document.body.appendChild(script);
 //   }, []);
 
+// useEffect(() => {
+//   const script = document.createElement("script");
+//   script.src = "https://sdk.cashfree.com/js/ui/2.0.0/cashfree.sandbox.js";
+//   script.async = true;
+//   document.body.appendChild(script);
+// }, []);
+
+
   const handleClick = async () => {
     console.log("hi")
     try {
       // Step 1: Create order from backend
       const { data } = await axios.post("http://localhost:5000/create-order", {
         orderId: "order_" + Date.now(),
-        orderAmount: 5, // INR
-        customerName: name,
-        customerEmail:"sunnyprajapati9761@gmail.com",
-        customerPhone: "7088663075"
+        orderAmount: 1, // INR
+        customerName: "vishal",
+        customerEmail:"kumar672399@gmail.com",
+        customerPhone: "7505200576"
       })
        if(data?.stuts==true){
            dispatch(myorderdata(selectedPrice))
@@ -109,25 +115,13 @@ function Address() {
       setTimeout(() => {
         dispatch(Removecartdata(selectedPrice.map((item)=>item.id)));
       }, 1000);
-     
-    //  setTimeout(() => {
-    //       setShowPopup(true);
-    //    setAlertType("success")
-    //          setPopupMessage('Successfully purchse video');
-    
-    //   navigate("/ViewData-page");
-     
-    //  }, 3000);
-     
       return;
        }
-      console.log("datad",data)
-      // Step 2: Call Cashfree checkout
       const cashfree = new window.Cashfree({ mode: "sandbox" });
       cashfree.checkout({
-        paymentSessionId: data.payment_session_id,
-        redirectTarget: "_self" // or "_blank" for new tab
-      });
+      paymentSessionId: data.payment_session_id,
+      redirectTarget: "_self" // ✅ SAME PAGE MODAL
+    });
     } catch (error) {
       console.log("Payment error:", error);
     }}
