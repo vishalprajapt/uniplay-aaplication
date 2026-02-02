@@ -13,6 +13,7 @@ import axios from "axios"
 // import {load} from '@cashfreepayments/cashfree-js'
 // import { cashfree } from './util'
 import { myorderdata } from '../Redux/Action';
+import { Spinner } from 'react-bootstrap';
 
 
 
@@ -34,6 +35,7 @@ function Address() {
   const  [discountprice, setdiscountprice]=useState(0)
   const [loading, setloading]=useState(false);
   const [discountitem, setdiscountitem]=useState(false)
+  const [processLoder,setprocessLoder]=useState(false)
   const intivalue=(100);
   const delivery=(100);
   const Cupan=[
@@ -219,6 +221,7 @@ function Address() {
     }else{    
        
        handleClick()
+       setprocessLoder(true)
     //   dispatch(myorderdata(selectedPrice))
     //   setThankYouVisible(true)
        
@@ -535,7 +538,14 @@ useEffect(()=>{
               </label>
             </div>
            <div >
-           <button style={{marginTop:"15px",  width:"100%",background:"#0a8d94", border:"none", outline:"none",color:"white"}} type="button" className="btn" onClick={handleprocess}>Proceed To Checkout</button>
+           <button style={{marginTop:"15px",  width:"100%",background:"#0a8d94", border:"none", outline:"none",color:"white"}} 
+           type="button"
+            className="btn"
+           
+           disabled={processLoder}
+           onClick={handleprocess}>
+            {processLoder?<Spinner   size='sm' />:"Proceed To Checkout"}
+            </button>
            </div>
           </div>
         </div>
