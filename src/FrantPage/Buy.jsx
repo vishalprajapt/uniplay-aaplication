@@ -14,6 +14,7 @@ import axios from "axios"
 // import { cashfree } from './util'
 import { myorderdata } from '../Redux/Action';
 import { Spinner } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 
 
@@ -90,48 +91,112 @@ function Address() {
 //     document.body.appendChild(script);
 //   }, []);
 
-  const handleClick = async () => {
-    try {
-      // Step 1: Create order from backend
-      const { data } = await axios.post("https://uniplay-backend-epxs.onrender.com/create-order", {
-        orderId: "order_" + Date.now(),
-        orderAmount: 5, // INR
-        customerName: name,
-        customerEmail:"sunnyprajapati9761@gmail.com",
-        customerPhone: "7088663075"
-      })
-       if(data?.stuts==true){
-           dispatch(myorderdata(selectedPrice))
-      setThankYouVisible(true)
-       
-      dispatch(Purchase(selectedPrice.map((item)=>item.id)));
-      dispatch(Viewcarddata(selectedPrice))
 
-      setTimeout(() => {
-        dispatch(Removecartdata(selectedPrice.map((item)=>item.id)));
-      }, 1000);
+
+
+
+
+
+
+
+
+
+
+
+//    if(data?.stuts==true){
+    //        dispatch(myorderdata(selectedPrice))
+    //   setThankYouVisible(true)
+       
+    //   dispatch(Purchase(selectedPrice.map((item)=>item.id)));
+    //   dispatch(Viewcarddata(selectedPrice))
+
+    //   setTimeout(() => {
+    //     dispatch(Removecartdata(selectedPrice.map((item)=>item.id)));
+    //   }, 1000);
      
-    //  setTimeout(() => {
-    //       setShowPopup(true);
-    //    setAlertType("success")
-    //          setPopupMessage('Successfully purchse video');
+    // //  setTimeout(() => {
+    // //       setShowPopup(true);
+    // //    setAlertType("success")
+    // //          setPopupMessage('Successfully purchse video');
     
-    //   navigate("/ViewData-page");
+    // //   navigate("/ViewData-page");
      
-    //  }, 3000);
+    // //  }, 3000);
      
-      return;
-       }
-      console.log("datad",data)
-      // Step 2: Call Cashfree checkout
+    //   return;
+    //    }
+
+  // const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+  const [orderId, setOrderId] = useState("");
+
+  const handleClick = async () => {
+    console.log("called apida")
+    try {
+      // setLoading(true);
+      setStatus("");
+
+      // 🔹 STEP 1: Create Order
+      const newOrderId = "order_" + Date.now();
+      setOrderId(newOrderId);
+
+      const { data } = await axios.post(
+        "http://localhost:5000/create-order",
+        {
+          orderId: newOrderId,
+          orderAmount: 5,
+          customerName: "Sunny",
+          customerEmail: "sunnyprajapati9761@gmail.com",
+          customerPhone: "7505299585",
+        }
+      );
+
+      // 🔹 STEP 2: Open Cashfree
       const cashfree = new window.Cashfree({ mode: "sandbox" });
+
       cashfree.checkout({
         paymentSessionId: data.payment_session_id,
-        redirectTarget: "_self" // or "_blank" for new tab
+        redirectTarget: "_modal",
       });
+
+      // 🔹 STEP 3: Poll backend for payment status
+      startPolling(newOrderId);
     } catch (error) {
-      console.log("Payment error:", error);
-    }}
+      console.error(error);
+      // setLoading(false);
+      setStatus("ERROR");
+    }
+  };
+
+  // ===============================
+  // PAYMENT STATUS CHECK (POLLING)
+  // ===============================
+  let pollingInterval = null;
+
+const startPolling = (orderId) => {
+  pollingInterval = setInterval(async () =>{
+    try{
+      const res = await axios.get(
+        `http://localhost:5000/payment-status/${orderId}`
+      );
+
+      console.log("Polling:", res.data);
+
+      if (res.data.status === "PAID") {
+        clearInterval(pollingInterval);
+        setStatus("SUCCESS");
+      }
+
+      if (res.data.status === "FAILED") {
+        clearInterval(pollingInterval);
+        setStatus("FAILED");
+      }
+    } catch (err) {
+      console.log("Waiting for payment...");
+    }
+  }, 3000); // every 3 sec
+};
+
   
 
 
@@ -208,16 +273,16 @@ function Address() {
 
   const handleprocess=()=>{
 
-    if (SelectAddress.length <= 0 || !changepop) {
-      setShowPopup(true);
-       setAlertType("error")
-      setPopupMessage("Please fill the address form and save");
-    }
-   else if(!isChecked){
-      setShowPopup(true);
-       setAlertType("error")
-      setPopupMessage('Please agree checkout');
-    }else{    
+  //   if (SelectAddress.length <= 0 || !changepop) {
+  //     setShowPopup(true);
+  //      setAlertType("error")
+  //     setPopupMessage("Please fill the address form and save");
+  //   }
+  //  else if(!isChecked){
+  //     setShowPopup(true);
+  //      setAlertType("error")
+  //     setPopupMessage('Please agree checkout');
+  //   }else{    
        
        handleClick()
        setprocessLoder(true)
@@ -241,7 +306,7 @@ function Address() {
     //  }, 3000);
      
     //   return;
-    }
+    // }
   }
 
   // useEffect(() => {
