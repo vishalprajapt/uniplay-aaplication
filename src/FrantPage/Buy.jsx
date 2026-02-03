@@ -91,7 +91,6 @@ function Address() {
 //   }, []);
 
   const handleClick = async () => {
-    console.log("hi")
     try {
       // Step 1: Create order from backend
       const { data } = await axios.post("https://uniplay-backend-epxs.onrender.com/create-order", {
