@@ -141,7 +141,7 @@ function Address() {
       setOrderId(newOrderId);
 
       const { data } = await axios.post(
-        "http://localhost:5000/create-order",
+        "https://uniplay-backend-epxs.onrender.com/create-order",
         {
           orderId: newOrderId,
           orderAmount: 5,
@@ -177,7 +177,7 @@ const startPolling = (orderId) => {
   pollingInterval = setInterval(async () =>{
     try{
       const res = await axios.get(
-        `http://localhost:5000/payment-status/${orderId}`
+        `https://uniplay-backend-epxs.onrender.com/payment-status/${orderId}`
       );
 
       console.log("Polling:", res.data);
